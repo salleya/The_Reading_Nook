@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="styles.css" rel="stylesheet">
+  <title>Order Items</title>
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="./">Home</a></li>
+    <li><a href="./customers">Customers</a></li>
+    <li><a href="./books">Books</a></li>
+    <li><a href="./orders">Orders</a></li>
+    <li><a href="./order_items">Order Items</a></li>
+    <li><a href="./employees">Employees</a></li>
+  </ul>
+
+  <h1>The Reading Nook Order Items</h1>
+  <div>
+    <br>
+    <br>
+    <form id='search-order-items-form' method='POST' action='/search-order-items-form' class="search-form">
+      <label class="search-header">Search for Order Items:</label>
+      <br>
+      <label>by Order Number</label>
+      <input type="number" placeholder="Order Number" name="order_number_entered" id="order_number_entered"
+        class="search-field">
+      <br>
+      <input type="submit" class="search-button">
+    </form>
+  </div>
+  <br>
+  <br>
+  <a href="/orders">Return to list of orders</a>
+
+  <br>
+  <a href="/">Return to the Home Page</a>
+
+  <table>
+    <caption>Order Items</caption>
+    <thead>
+      <tr>
+        <th>Order Number</th>
+        <th>Book ID Ordered</th>
+        <th>Book Title</th>
+        <th>Quantity</th>
+        <th>Shipment Completed</th>
+        <th>Add Items</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each data}}
+      <tr>
+        <td>{{this.order_number}}</td>
+        <td>{{this.book_id}}</td>
+        <td>{{this.title}}</td>
+        <td>{{this.quantity}}</td>
+        <td>{{this.order_item_complete}}</td>
+        <td>
+          <form id='add-order-items-form' method='POST' action='/add-order-items-form'>
+            <button class="center_button" name="order_number_selected" id="order_number_selected"
+              value="{{this.order_number}}">Add Items</button>
+          </form>
+        </td>
+        <td>
+          <form id='delete-order-item-form' method='POST' action='/delete-order-item-form'>
+            <button class="center_button" name="order_item_selected" id="order_item_selected"
+              value="{{this.order_number}}, {{this.book_id}}">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+
+</body>
+
+</html>

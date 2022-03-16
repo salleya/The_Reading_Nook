@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="styles.css" rel="stylesheet">
+    <title>Edit Customer</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li><a href="./">Home</a></li>
+        <li><a href="./customers">Customers</a></li>
+        <li><a href="./books">Books</a></li>
+        <li><a href="./orders">Orders</a></li>
+        <li><a href="./order_items">Order Items</a></li>
+        <li><a href="./employees">Employees</a></li>
+    </ul>
+
+    <h1>Edit Customer</h1>
+
+    <form id='update-customer-form' method='POST' action='/update-customer-form'>
+        {{#each data}}
+        <fieldset>
+            <label for="first_name">First Name:</label>
+            <input type="text" value="{{this.first_name}}" name="first_name_update" id="first_name_update"
+                required="required" class="add-edit-field" />
+
+            <br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" value="{{this.last_name}}" name="last_name_update" id="last_name_update"
+                required="required" class="add-edit-field" />
+
+            <br>
+            <label for="email">Email:</label>
+            <input type="text" value="{{this.email}}" name="email_update" id="email_update" class="add-edit-field" />
+
+            <br>
+            <label for="address">Address:</label>
+            <input type="text" value="{{this.street_address}}" name="street_address_update" id="street_address_update"
+                class="add-edit-field" />
+
+            <br>
+            <label f or="city">City:</label>
+            <input type="text" value="{{this.city}}" name="city_update" id="city_update" class="add-edit-field" />
+
+            <br>
+            <label for="state">State:</label>
+            <input type="text" value="{{this.state}}" name="state_update" id="state_update" />
+
+            <br>
+            <label for="zip_code">Zip Code:</label>
+            <input type="text" value="{{this.zip_code}}" name="zip_code_update" id="zip_code_update" />
+
+            <br>
+            <button value="{{this.customer_id}}" name="customer_id_update" id="customer_id_update">Submit
+                changes</button>
+        </fieldset>
+        {{/each}}
+    </form>
+
+    <br>
+    <a href="/customers">Return to list of customers</a>
+
+    <br>
+    <a href="/">Return to the Home Page</a>
+</body>
+
+</html>

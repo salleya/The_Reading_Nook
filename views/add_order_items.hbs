@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="styles.css" rel="stylesheet">
+    <title>Edit Order Item</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li><a href="./">Home</a></li>
+        <li><a href="./customers">Customers</a></li>
+        <li><a href="./books">Books</a></li>
+        <li><a href="./orders">Orders</a></li>
+        <li><a href="./order_items">Order Items</a></li>
+        <li><a href="./employees">Employees</a></li>
+    </ul>
+
+    <h1>Edit Order Item</h1>
+
+    <h2>Adding items to order {{order_number}}</h2>
+    <form id='update-order-items-form' method='POST' action='/update-order-items-form'>
+        <fieldset>
+            <br>
+            <h3>Order Items</h3>
+            <label for="book_id_input">Book:</label>
+            <select name="book_id_input" id="book_id_input" required="required">
+                <option value="">Select a Book</option>
+                {{#each select_books}}
+                <option value="{{this.book_id}}">{{this.title}}</option>
+                {{/each}}
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" placeholder="Quantity" name="quantity_input" id="quantity_input" required="required" />
+
+            <select name="order_item_complete_input" id="order_item_complete_input">
+                <option value="FALSE" selected>Not Complete</option>
+                <option value="TRUE">Complete</option>
+            </select>
+            <br>
+
+            <label for="book_id_input_2">Book:</label>
+            <select name="book_id_input_2" id="book_id_input_2">
+                <option value="">Select a Book</option>
+                {{#each select_books}}
+                <option value="{{this.book_id}}">{{this.title}}</option>
+                {{/each}}
+            </select>
+
+            <label for="quantity_2">Quantity:</label>
+            <input type="number" placeholder="Quantity" name="quantity_input_2" id="quantity_input_2"/>
+
+            <select name="order_item_complete_input_2" id="order_item_complete_input_2">
+                <option value="FALSE" selected>Not Complete</option>
+                <option value="TRUE">Complete</option>
+            </select>
+            <br>
+
+            <label for="book_id_input_3">Book:</label>
+            <select name="book_id_input_3" id="book_id_input_3">
+                <option value="">Select a Book</option>
+                {{#each select_books}}
+                <option value="{{this.book_id}}">{{this.title}}</option>
+                {{/each}}
+            </select>
+
+            <label for="quantity_3">Quantity:</label>
+            <input type="number" placeholder="Quantity" name="quantity_input_3" id="quantity_input_3"/>
+
+            <select name="order_item_complete_input_3" id="order_item_complete_input_3">
+                <option value="FALSE" selected>Not Complete</option>
+                <option value="TRUE">Complete</option>
+            </select>
+
+            <br>
+            <br>
+            <button value="{{order_number}}" name="order_number_update" id="order_number_update">Add Item</button>
+        </fieldset>
+    </form>
+
+    <br>
+    <a href="/orders">Return to list of orders</a>
+
+    <br>
+    <a href="/">Return to the Home Page</a>
+</body>
+
+</html>

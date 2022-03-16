@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="styles.css" rel="stylesheet">
+  <title>The Reading Nook Orders</title>
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="./">Home</a></li>
+    <li><a href="./customers">Customers</a></li>
+    <li><a href="./books">Books</a></li>
+    <li><a href="./orders">Orders</a></li>
+    <li><a href="./order_items">Order Items</a></li>
+    <li><a href="./employees">Employees</a></li>
+  </ul>
+
+  <h1>The Reading Nook Orders</h1>
+  <div>
+    <br>
+    <br>
+
+    <form id='search-orders-form' method='POST' action='/search-orders-form' class="search-form">
+      <label class="search-header">Search for an order:</label>
+      <br>
+      <label>by Order Number</label>
+      <input type="number" placeholder="Order Number" name="order_number_entered" id="order_number_entered"
+        class="search-field">
+      <br>
+      <input type="submit" class="search-button">
+    </form>
+  </div>
+
+  <br>
+  <a href="/new_order">Add a new order</a>
+
+  <br>
+  <a href="/">Return to the Home Page</a>
+
+  <table>
+    <caption>Orders</caption>
+    <thead>
+      <tr>
+        <th>Order Number</th>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Order Date</th>
+        <th>To be shipped</th>
+        <th>Order Complete</th>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>View Items</th>
+        <th>Add Items</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each data}}
+      <tr>
+        <td>{{this.order_number}}</td>
+        <td>{{this.customer_id}}</td>
+        <td>{{this.c_first_name}} {{this.c_last_name}}</td>
+        <td>{{this.order_date}}</td>
+        <td>{{this.to_be_shipped}}</td>
+        <td>{{this.order_complete}}</td>
+        <td>{{this.employee_id}}</td>
+        <td>{{this.e_first_name}} {{this.e_last_name}}</td>
+        <td>
+          <form id='search-order-items-form' method='POST' action='/search-order-items-form'>
+            <button class="center_button" name="order_number_entered" id="order_number_entered"
+              value="{{this.order_number}}">View Items</button>
+          </form>
+        </td>
+        <td>
+          <form id='add-order-items-form' method='POST' action='/add-order-items-form'>
+            <button class="center_button" name="order_number_selected" id="order_number_selected"
+              value="{{this.order_number}}">Add items</button>
+          </form>
+        </td>
+        <td>
+          <form id='delete-order-form' method='POST' action='/delete-order-form'>
+            <button class="center_button" name="order_number_selected" id="order_number_selected"
+              value="{{this.order_number}}">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+
+</body>
+
+</html>
